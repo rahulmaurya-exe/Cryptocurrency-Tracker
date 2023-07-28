@@ -5,8 +5,14 @@ const CardSection = ({ data, currency }) => {
   const currentPrice = data.info.market_data.current_price[currency]
   const coinName = data.info.name
   const mCap24 = data.info.market_data.market_cap_change_percentage_24h
-  const ath = data.info.market_data.ath.usd
-  const atl = data.info.market_data.ath.usd
+  let ath, atl
+  if (currency === 'usd') {
+    ath = data.info.market_data.ath.usd
+    atl = data.info.market_data.ath.usd
+  } else {
+    ath = data.info.market_data.ath.inr
+    atl = data.info.market_data.ath.inr
+  }
   const sentiment = data.info.sentiment_votes_up_percentage
   const low24 = data.info.market_data.low_24h[currency]
   const high24 = data.info.market_data.high_24h[currency]
